@@ -4,7 +4,7 @@
 # Assignment 3
 # Create a game 
 
-
+print('remember to delete this line')
 
 # TODO: Student turns in their assignment before the 11:59 p.m. Friday deadline and the file is named nimGrab.py
 #       (delete this TODO line when completed) (1 pt.)
