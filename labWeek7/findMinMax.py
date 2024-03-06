@@ -11,12 +11,17 @@ def findMin(a):                       # finds minimum in lst
             min = i                 # equal to the previous value of i in loop?
             pl += 1
         elif i < min:
-            print("test")               # compares if i is smaller than min which is the beginning value
-
-            
+            min = i               # compares if i is smaller than min which is the beginning value
+    return str(min)                
 
 def findMax(lst):                   #finds maximum in lst
-    print("placeholder")
+    max = lst[0]
+    
+    for i in lst:
+    
+        if i > max:
+            max = i               # compares if i is smaller than min which is the beginning value
+    return str(max) 
 
 def main():
     lst = []
@@ -25,8 +30,8 @@ def main():
     while num != "*":     # checks if s != *
         lst.append(int(num))   # attaches s to end of list and makes it int
         num = input("Make a list of numbers, end with *:\n")
-    print(findMin(lst)) 
-    return lst
+    print("Min: " + findMin(lst)) 
+    print("Max: " + findMax(lst))
         
 
 if __name__ == "__main__":
