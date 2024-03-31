@@ -1,6 +1,6 @@
 # Jack Byboth section 2 3/26/24
 # placeholder   
-def studentId():
+def studentId():                                                                
     with open("students.txt", "r") as idList:
         
         lines = idList.readlines()[1:]

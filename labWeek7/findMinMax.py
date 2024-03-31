@@ -1,20 +1,20 @@
 #Jack Byboth Section 2 3/5/24
 
-def findMin(a):                       # finds minimum in lst
+def findMin(a):                       
     min = 0
-    pl = 0                             # keep track of how many times has run in order to change if ran?
+    pl = 0                             
 
 
     for i in a:
         
-        if pl == 0:                 # runs through i but does not compare min to previous min
-            min = i                 # equal to the previous value of i in loop?
+        if pl == 0:                 
+            min = i                 
             pl += 1
         elif i < min:
-            min = i               # compares if i is smaller than min which is the beginning value
+            min = i               
     return str(min)                
 
-def findMax(lst):                   #finds maximum in lst
+def findMax(lst):                   
     max = lst[0]
     
     for i in lst:
