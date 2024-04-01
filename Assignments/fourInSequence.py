@@ -87,6 +87,8 @@ def createBoard(width, height):
     :param int height: How many 'spaces' high to make the gameboard.
     :return list of lists: board - The data structure that contains the contents of the gameboard. Only contains 'Player 0' pieces by default.
     """
+
+
     empty = getPlayerPiece(0)
     board = []
     for i in range(0, height):
@@ -401,20 +403,17 @@ def checkDraw(board):
     """
     empty = getPlayerPiece(0)
 
-    # TODO: Write code in this function that accomplishes the specification outlined in the documentation comment above.
-    #       (KEEP this TODO line when completed) (1 pt.)
-    # HINT: Each comment below represents a single line of code at the appropriate indentation level.
-    # HINT: Do not start with this function - start with the checkWinner() function and get that working in 2 player mode.
-    # NOTE: You do not need to do this according to the comments below - you may do this however you wish.
+    
 
     # iterate through all the rows in the board
+    for row in (0, len(board)): 
 
         # iterate through all the columns in a row
-
+        for column in (0, len(board[0]) - 3):
             # check if the column is empty
-
+            if column == empty:
                 # if a column is empty for a particular row, then no draw is possible - return False immediately
- 
+                return False
     # if there was not a single empty column found on the entire board, the board must be entirely filled - return True for a draw
     return True
 
@@ -463,6 +462,8 @@ def checkWinner(board, playerNumber):
                 return True
 
     # check vertical locations
+    #for column in range(0, len(board)):
+        #for row in range(0, len(board)):
 
 
 
@@ -580,15 +581,11 @@ def main():
                     currentPlayerTurn = switchTurns(currentPlayerTurn)
                     
         elif choice == "i":
-            # TODO: Print out the instructions/ algorithm for the game.
-            #       (KEEP this TODO line when completed) (1 pt.)
-            # HINT: You can delete the 'pass' statement - it does nothing.
-            pass
+            print("The way to win this game is to get four in a row! you can play alone against a computer or against another person!")
+            
         elif choice == "q":
-            # TODO: Set the 'running' variable to False, and print out a 'Goodbye!' message to the player.
-            #       (KEEP this TODO line when completed) (1 pt.)
-            # HINT: You can delete the 'pass' statement - it does nothing.
-            pass
+            print("Goodbye!!!!")
+            break
         else:
             print("ERROR: Variable 'choice' should have been 'p', 'i', or 'q', but instead was:", choice)
             quit()
