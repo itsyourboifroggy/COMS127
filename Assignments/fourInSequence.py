@@ -177,23 +177,29 @@ def checkForNextMoveWin(board, playerNumber):
     # NOTE: You do not need to do this according to the comments below - you may do this however you wish.
 
     # iterate through all columns, assigning each column number to the loop variable
-
+    colNum = len(board[0])
+    for column in range(colNum):
+        colNum = column
+        
         # use getOpenRow() to check if the column has an open row, and return the row number if there is one
-
+        if getOpenRow(board ,colNum ) != -1:
+            row = getOpenRow(board, colNum)
+            return row 
         # if the column has an open row, meaning getOpenRow() did not return -1, then perform several logical steps
+        elif colNum != -1:
 
             # set the board, at the location [row][col] to be the player piece found above with the placePiece() function
-
+            placePiece(board, row, colNum, piece)
             # use checkWinner() to see if there is a winning move that resulted from changing the board on the line above
-
+            if checkWinner(board, playerNumber) == True:
                 # if there was a winning move found, reset the board, at the location [row][col] to be the empty piece found above with the placePiece() function
-
+                placePiece(board, empty, empty, piece)
                 # if there was a winning move found, immediately return the current column number
-
+                return colNum
             # reset the board, at the location [row][col] to be the empty piece found above with the placePiece() function
+            placePiece(board, empty, empty, piece)
 
-
-    # return -1, as there was no winning move found
+    
     return -1
 
 def checkAdjacent(board, playerNumber):
@@ -243,7 +249,7 @@ def checkAdjacent(board, playerNumber):
         row = getOpenRow(board, column)
         if row != -1:
             # upper left piece (up one row, left one column)
-            #
+            board[row - 1][column -1]
             # do a check to ensure we don't get an 'index out of range' error
             if row - 1 >= 0 and column - 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
@@ -252,58 +258,58 @@ def checkAdjacent(board, playerNumber):
                     adjacents.append(column)
 
             # left piece (left one column)
-            #
+            board[row][column -1 ]
             # ensure we don't get an 'index out of range' error
-
+            if row >= 0 and column - 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
-
+                if board[row][column-1] == piece:
                     # append the column under consideration to the 'adjacents' list
-
+                    adjacents.append(column)
 
             # lower left piece (down one row, left one column)
-            # 
+            board[row +1][column -1 ]
             # ensure we don't get an 'index out of range' error
-
+            if row + 1 >= 0 and column - 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
-
+                if board[row+1][column-1] == piece:
                     # append the column under consideration to the 'adjacents' list
-
+                    adjacents.append(column)
 
             # lower piece (down one row)
-            # 
+            board[row +1][column] 
             # ensure we don't get an 'index out of range' error
-
+            if row + 1 >= 0 and column - 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
- 
+                if board[row+1][column] == piece:
                     # append the column under consideration to the 'adjacents' list
-
+                    adjacents.append(column)
 
             # lower right piece (down one row, right one column)
-            # 
+            board[row +1][column +1 ]
             # ensure we don't get an 'index out of range' error
-
+            if row + 1 >= 0 and column + 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
-
+                if board[row+1][column+1] == piece:
                     # append the column under consideration to the 'adjacents' list
-
+                    adjacents.append(column)
 
             # right piece (right one column)
-            # 
+            board[row][column +1 ]
             # ensure we don't get an 'index out of range' error
-
+            if row - 1 >= 0 and column + 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
-
+                if board[row][column+1] == piece:
                     # append the column under consideration to the 'adjacents' list
-
-
+                    adjacents.append(column)
+    
             # upper right piece (up one row, right one column)
-            # 
+            board[row -1][column +1]
             # ensure we don't get an 'index out of range' error
-
+            if row - 1 >= 0 and column + 1 >= 0:
                 # do a check to see if the board location under consideration is equal to the piece found above
-
+                if board[row -1 ][column+1] == piece:
                     # append the column under consideration to the 'adjacents' list
-
+                    adjacents.append(column)
 
     if len(adjacents) > 1:
         randVal = random.randrange(0, len(adjacents))
@@ -436,13 +442,7 @@ def checkWinner(board, playerNumber):
     :param int playerNumber: The player number whose piece this function checks to see if there is a winning condition.
     :return boolean: Returns True if a winning condition is found. It returns False if a winning condition is not found.
     """
-    # TODO: Write code in this function that accomplishes the specification outlined in the documentation comment above.
-    #       (KEEP this TODO line when completed) (1 pt.)
-    # HINT: Each comment below represents multiple lines of code. However, each code block should closely resemble the first.
-    # HINT: Start with the this function and get it working in 2 player mode.
-    # HINT: You have been given the code to check the first winning condition - you will need to check all the other winning conditions.
-    # NOTE: You do not need to do this according to the comments below - you may do this however you wish.
-
+ 
     # HINT: use this diagram to help with debugging
     # 0.......
     # 1.......
