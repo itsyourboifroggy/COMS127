@@ -406,10 +406,10 @@ def checkDraw(board):
     
 
     # iterate through all the rows in the board
-    for row in (0, len(board)): 
+    for row in board: 
 
         # iterate through all the columns in a row
-        for column in (0, len(board[0]) - 3):
+        for column in ((board[0])):
             # check if the column is empty
             if column == empty:
                 # if a column is empty for a particular row, then no draw is possible - return False immediately
@@ -462,21 +462,28 @@ def checkWinner(board, playerNumber):
                 return True
 
     # check vertical locations
-    #for column in range(0, len(board)):
-        #for row in range(0, len(board)):
-
+    for row in range(len(board) - 3):
+        for column in range(len(board[0])):
+            if board[row][column] == piece and board[row +1][column] == piece and board[row +2][column] == piece and board[row +3][column] == piece:
+                return True
 
 
 
 
     # check negatively sloped diagonals
-
+    for row in range(3, len(board)):
+        for column in range(len(board[0]) - 3):
+            if board[row][column] == piece and board[row -1][column +1] == piece and board[row -2][column +2] == piece and board[row -3][column +3] == piece:
+                return True
 
 
 
 
     # check positively sloped diagonals
-
+    for row in range(len(board) -3):
+        for column in range(len(board[0]) - 3):
+            if board[row][column] == piece and board[row +1][column +1] == piece and board[row +2][column +2] == piece and board[row +3][column +3] == piece:
+                return True
 
 
 
