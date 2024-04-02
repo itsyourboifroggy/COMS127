@@ -6,10 +6,14 @@ def uInput():
     listWords = []
     
     listWords.append(words)
-    
+    for line in range(0, len(listWords[0])):
+        listWords[0].split().strip()
     print(listWords)
 
+def dict1(a):
+    wInput = {
 
+    }
 def main():
     uInput()
 

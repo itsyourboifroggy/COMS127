@@ -1,17 +1,18 @@
 # Jack Byboth section 2 3/26/24
 # placeholder   
 def studentId():                                                                
-    with open("students.txt", "r") as idList:
+    with open("students.txt", "r") as idList:                                   # opens students.txt in read mode as the name idlist
         
-        lines = idList.readlines()[1:]
-        s_id = [line.strip().split(',')[0] for line in lines]
-        names = {line.strip().split(',')[0]: line.strip().split(',')[1] for line in lines}
+        lines = idList.readlines()[1:]                                          # sets variable lines euqal to all lines idlist after index 1
+        s_id = [line.strip().split(',')[0] for line in lines]                   # sets variable s_id equal to each line in lines with the 
+                                                                                # whitespace stripped and makes them individual strings in the list while making the spaces contain a comma
+        names = {line.strip().split(',')[0]: line.strip().split(',')[1] for line in lines}     # does the same thing as previous but to take the names
 
 
     return s_id, names
 
 def assignments():
-    s_id2, names2 = studentId()
+    s_id2, names2 = studentId()              # sets the 2 variables equal to the returned values in the function studentid
     scores_dict = {student_id: [] for student_id in s_id2}  
 
     with open("scores.txt", "r") as scoreFile:
