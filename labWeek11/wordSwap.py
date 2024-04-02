@@ -1,23 +1,33 @@
 # Jack Byboth section 2 4/2/24
 # swaps words in a sentence using a key corresponding to the word
+import random
 
 def uInput():
     words = input("Enter a list of words (more than one): ")
-    listWords = []
+
+    list1 = words.split()
     
-    listWords.append(words)
-    for line in range(0, len(listWords[0])):
-        listWords[0].split().strip()
-    print(listWords)
+    return list1
 
-def dict1(a):
-    wInput = {
+def dict1(var):
+    dictVar = {}
+    for i in range(0, len(var) -1):
+        dictVar[var[i]] = var[i+1]
+    return dictVar
+    
 
-    }
+def newSentence(dict):
+    print()
+
+        
+        
+    
 def main():
-    uInput()
-
-
+    var = uInput()
+    print(dict1(var))
+    
+   
+    
 
 
 
