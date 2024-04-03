@@ -11,13 +11,25 @@ def uInput():
 
 def dict1(var):
     dictVar = {}
-    for i in range(0, len(var) -1):
-        dictVar[var[i]] = var[i+1]
+    s = []
+    for word in var[:-1]:  
+        index = random.choice([i for i in range(len(var)) if i not in s])
+        dictVar[word] = var[index]  
+        s.append(index)
     return dictVar
     
 
-def newSentence(dict):
-    print()
+def newSentence(sent, var):
+    words = sent.split()
+    new_words = []
+    for word in words:
+        if word in var:
+            new_words.append(var[word])
+        else:
+            new_words.append(word)
+    new_sentence = ' '.join(new_words)
+    
+    print("Swapped sentence:", new_sentence)
 
         
         
@@ -25,8 +37,9 @@ def newSentence(dict):
 def main():
     var = uInput()
     print(dict1(var))
-    
-   
+    r = dict1(var)
+    sent = ' '.join(var)
+    newSentence(sent, r)
     
 
 
