@@ -2,7 +2,7 @@
 # analyzes a book 
 
 
-with("36-0.txt", "r") as file:
+with open("book.txt", "r") as file:
     file.readlines()
     
 
