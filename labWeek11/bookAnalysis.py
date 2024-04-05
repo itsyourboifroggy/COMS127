@@ -2,7 +2,7 @@
 # analyzes a book 
 
 
-with open("book.txt", "r") as file:
+with open("labWeek11\ook.txt", "r") as file:
     file.readlines()
     
 
@@ -43,7 +43,9 @@ def getInput():
 
 
 def main():
-    removeP(getInput)
+    
+    a = getInput()
+    removeP(a)
 
 
 
