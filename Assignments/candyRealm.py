@@ -23,28 +23,26 @@ def board():
     print("placeholder")
 
 def mainMenu():
-    menuChoice = input("Main Menu!: [p]lay game, [i]nstructions, or [q]uit ")
+    
     thing = True
     while thing:    
+        menuChoice = str(input("Main Menu!: [p]lay game, [i]nstructions, or [q]uit "))
+       
         if menuChoice == 'p':
             print("placeholder")
-            thing = False
-        if menuChoice == 'i':
+                
+        elif menuChoice == 'i':
             print('placeholder')
-            thing = False
-        if menuChoice == 'q':
+                
+        elif menuChoice == 'q':
             thing = False 
+        else:
+            print('ERROR please enter a valid input')
+                
+        
+    
+    
     thing = False   
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -54,15 +52,7 @@ def main():
 
     mainMenu()
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     # TODO: Program the game of 'Candy Realm!' You may accomplish this however you like outside of using ChatGPT/ AI code generation/ cheating.
     #       Your submission should generally follow the rules of the original game (found below).
