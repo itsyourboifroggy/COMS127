@@ -19,11 +19,51 @@ def printTitleMaterial():
     print("Section 2")
     print()
 
+def board():
+    print("placeholder")
+
+def mainMenu():
+    menuChoice = input("Main Menu!: [p]lay game, [i]nstructions, or [q]uit ")
+    thing = True
+    while thing:    
+        if menuChoice == 'p':
+            print("placeholder")
+            thing = False
+        if menuChoice == 'i':
+            print('placeholder')
+            thing = False
+        if menuChoice == 'q':
+            thing = False 
+    thing = False   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def main():
-    """This function is where all the fun happens!
-    """
     printTitleMaterial()
 
+    mainMenu()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     # TODO: Program the game of 'Candy Realm!' You may accomplish this however you like outside of using ChatGPT/ AI code generation/ cheating.
     #       Your submission should generally follow the rules of the original game (found below).
     #       Your submission should visualize the game in some way - meaning that the user should be able to see the pieces/ board.
