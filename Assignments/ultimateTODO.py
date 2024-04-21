@@ -5,8 +5,8 @@
 
 # Assignment 5, this should make a to do list that has many different parts
 
-import sys
-import pickle
+import sys                                  # adds many useful functions
+import pickle                           # adds pickle which dumps data to be used 
 
 def printTitleMaterial():
     """Prints the title material for the game, including the student's name, class, and section number.
@@ -24,7 +24,7 @@ def initList():
 
     :return Dictionary of Lists: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     """
-    todoList = {}
+    todoList = {}                                               # makes a dictionary where the keys are equal to empty lists to be used later 
     todoList["backlog"] = []
     todoList["todo"] = []
     todoList["in_progress"] = []
@@ -39,7 +39,7 @@ def checkIfListEmpty(todoList):
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     :return Boolean: If there is at least one item in the data structure, return False - it is not empty. Otherwise return True.
     """
-    if (len(todoList["backlog"]) > 0 or 
+    if (len(todoList["backlog"]) > 0 or                 # checks if the amount of items in the keys lists are greater than one and if true it returns false otherwise it returns true
         len(todoList["todo"]) > 0 or
         len(todoList["in_progress"]) > 0 or
         len(todoList["in_review"]) > 0 or
@@ -53,7 +53,7 @@ def saveList(todoList):
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     """
     try:
-        listName = input("Enter List Name (Exclude .lst Extension): ")
+        listName = input("Enter List Name (Exclude .lst Extension): ")          # Allows you to dump the list to a file, otherwise if the file name does not exist print the error
         with open("./" + listName + ".lst", "wb") as pickle_file:
             pickle.dump(todoList, pickle_file)
     except:
@@ -66,7 +66,7 @@ def loadList():
     :return Dictionary of Lists: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     """
     try:
-        listName = input("Enter List Name (Exclude .lst Extension): ")
+        listName = input("Enter List Name (Exclude .lst Extension): ")              # allows you to load a list specified and returns that list to the variable todoList
         with open("./" + listName + ".lst", "rb") as pickle_file:
             todoList = pickle.load(pickle_file)
     except:
@@ -85,7 +85,7 @@ def checkItem(item, todoList):
     itemFound = False
     keyName = ""
     index = -1
-    
+                                                                        # Iterates through key, value in todoList and if the item is found it sets itemFound to true, keyname to key, and index to the index value of the current item
     for key, value in todoList.items():
         if item in value:
             itemFound = True
@@ -96,9 +96,6 @@ def checkItem(item, todoList):
     
 
 
-
-
-    return todoList
 def addItem(item, toList, todoList):
     """This function allows the user to add an item to a specific list in the todoList data structure.
 
@@ -111,7 +108,7 @@ def addItem(item, toList, todoList):
     print(todoList)
     
     var = item.strip()  
-    if var in todoList[toList]:
+    if var in todoList[toList]:                                     # checks to see if an item is already in a list and if it isnt, it will add it to the list toList
         print(f'ERROR item "{var}" is already in {toList}')
     else:
         todoList[toList].append(var)
@@ -130,7 +127,8 @@ def deleteItem(item, todoList):
     """
     itemFound, key, index = checkItem(item, todoList)
     
-    if itemFound:
+    if itemFound:                                                           # when this is called it checks if itemFound is true, then if it is it removes the item (value) from the key specified
+                                                                            # and if it isnt it prints the error
         todoList[key].remove(item)
         print(f"removed {item} from {key}.")
     else:
@@ -152,7 +150,7 @@ def moveItem(item, toList, todoList):
     """
     k = input("list name:")
     itemFound, k, index = checkItem(item, todoList)
-    print(f"Item Found: {itemFound}, Key: {k}, Index: {index}")  
+                                                            # takes an input and if itemFound is true, runs the if statement that moves the item to another list toList
     if itemFound:
         todoList[k].remove(item)
         todoList[toList].append(item)
@@ -169,7 +167,7 @@ def printTODOList(todoList):
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     :return None: After printing out the contents of the Dictionary of Lists data structure, we are explicitly returning 'None.'
     """
-    for i in todoList:
+    for i in todoList:                              # prints all of todoList when ran
         print(i)
     
 
@@ -184,7 +182,7 @@ def runApplication(todoList):
     :return Dictionary of Lists: This function returns the modified Dictionary of Lists data structure.
     """
     while True:
-        print("-----------------------------------------------------------------")
+        print("-----------------------------------------------------------------")                  # the main menu of this program i messed up here because i should just call the functions
         choice = input("APPLICATION MENU: [a]dd to backlog, [m]ove item, [d]elete item, [s]ave list, or [q]uit to main menu?: ")
         print()
 
@@ -244,7 +242,7 @@ def main():
     - Loading a previously saved Dictionary of Lists.
     - Quitting the script altogether.
     """
-    taskOver = False
+    taskOver = False                                # runs the main menu and calls the previous functions with parameters
 
     printTitleMaterial()
 
