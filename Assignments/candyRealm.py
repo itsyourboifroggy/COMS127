@@ -6,7 +6,10 @@
 # Assignment #6 is the board game candyland 
 
 import random
-import colorama
+from colorama import init, Fore, Back
+
+
+
 
 def printTitleMaterial():
     """Prints the title material for the game, including the student's name, class, and section number.
@@ -20,8 +23,27 @@ def printTitleMaterial():
     print()
 
 def board():
-    print("placeholder")
+    from colorama import init, Fore, Back
 
+def board():
+    init()
+    boardList = ['M R B M C G B Y C B G Y G C Y R M R']
+    for char in boardList[0]:
+        if char == 'R':
+            print(Back.RED + char, end='')
+        elif char == 'G':
+            print(Back.GREEN + char, end='')
+        elif char == 'B':
+            print(Back.BLUE + char, end='')
+        elif char == 'Y':
+            print(Back.YELLOW + char, end='')
+        elif char == 'C':
+            print(Back.CYAN + char, end='')
+        elif char == 'M':
+            print(Back.MAGENTA + char, end='')
+        else:
+            print(Fore.WHITE + char, end='')
+    print(Back.RESET + Fore.RESET)  
 def mainMenu():
     
     thing = True
@@ -29,10 +51,10 @@ def mainMenu():
         menuChoice = str(input("Main Menu!: [p]lay game, [i]nstructions, or [q]uit "))
        
         if menuChoice == 'p':
-            print("placeholder")
+            board()
                 
         elif menuChoice == 'i':
-            print('placeholder')
+            print('This is a game called candy realm! play with 1-4 humans otherwise it will be bots. Draw a card and move to that color. Pretty Simple!')
                 
         elif menuChoice == 'q':
             thing = False 
