@@ -26,36 +26,32 @@ def printTitleMaterial():
 
 def board():
     init()
-    boardList = ['M R B M C G B Y C B G Y G C Y R M R']
-    for i in boardList[0]:
+    boardList = ['M', 'R', 'B', 'M', 'C', 'G', 'B', 'Y', 'C', 'B', 'G', 'Y', 'G', 'C', 'Y', 'R', 'M', 'R']
+    print('START ' , end='')
+    for i in boardList:
         if i == 'R':
-            print(Back.RED + i, end='')
+            print(Back.RED + i + ' ', end='')
         elif i == 'G':
-            print(Back.GREEN + i, end='')
+            print(Back.GREEN + i + ' ', end='')
         elif i == 'B':
-            print(Back.BLUE + i, end='')
+            print(Back.BLUE + i + ' ', end='')
         elif i == 'Y':
-            print(Back.YELLOW + i, end='')
+            print(Back.YELLOW + i + ' ', end='')
         elif i == 'C':
-            print(Back.CYAN + i, end='')
+            print(Back.CYAN + i + ' ', end='')
         elif i == 'M':
-            print(Back.MAGENTA + i, end='')
+            print(Back.MAGENTA + i + ' ', end='')
         else:
-            print(Fore.WHITE + i, end='')
-    print(Back.RESET + Fore.RESET)  
-
-
-from colorama import Back, Fore, init
-import random
-
-from colorama import Back, Fore, init
-import random
+            print(Fore.WHITE + i + ' ', end='')
+    print(Back.RESET + Fore.RESET)
 
 def cards(rand, numCards):
+    global newList
     init()
 
     cardList = ['R', 'B', 'M', 'Y', 'G', 'C']
-
+    newList = []
+    print('CARDS ', end='')
     for card in cardList:
         if card == 'R':
             print(Back.RED + (card + ' ') * numCards, end='')
@@ -73,34 +69,68 @@ def cards(rand, numCards):
             random.shuffle(cardList)
         else:
             print(Fore.WHITE + (card + ' ') * numCards, end='')
-
+        newList.append(card)
     print(Back.RESET + Fore.RESET)
 
-# Example usage:
-cards(False, 3)  # Prints each card 3 times in its color with spaces between them
-
-
-# Example usage:
-cards(False, 3)  # Prints each card 3 times in its color
-
-def players(playerCount):
-    #playerCount = input('How many players 1-4?: ')
-    gameYN = True
-    players = ''
-    while gameYN:
-        if playerCount == '1':
-            players = '1'
-        elif playerCount == '2':
-            players = '2'    
-        elif playerCount == '3':
-           players = '3'
-        elif playerCount == '4':
-            players = '4'
-    return players
+def players():
+    
+    p1 = '1'
+    p2 = '2'
+    p3 = '3'
+    p4 = '4'
+    print(p1)
+    print(p2)
+    print(p3)
+    print(p4)
+    
+    return p1, p2, p3, p4
 def theGame():
+    global newList
+    try:
+        playerCount = None
+        while playerCount not in range(1, 5):
+            playerCount = int(input('How many players 1-4: '))
 
-    print()
-    # cards(rand)
+        numCards = None
+        while numCards not in range(1, 6):
+            numCards = int(input('How many cards per color 1-5: '))
+
+        players()
+        board()
+        cards(False, numCards)
+
+    except ValueError:
+        print('Error enter a valid integer')
+    
+    
+    
+    playerVar = 1
+    try:
+
+        while True:
+            if playerVar == 1:
+                p1Input = str(input(f'Player 1: Would you like to [d]raw a {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                playerVar += 1
+            elif playerVar == 2:
+                p2Input = str(input(f'Player 2: Would you like to [d]raw a {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                playerVar += 1
+            elif playerVar == 3:
+                p3Input = str(input(f'Player 3: Would you like to [d]raw a {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                playerVar += 1
+            elif playerVar == 4:
+                p4Input = str(input(f'Player 4: Would you like to [d]raw a {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                playerVar = 1 
+            
+    except ValueError:
+        print('Error enter a valid integer')
+            
+
+
+    
+    
+
+
+
 def mainMenu():
     
     thing = True
@@ -108,22 +138,7 @@ def mainMenu():
         menuChoice = str(input("Main Menu!: [p]lay game, [i]nstructions, or [q]uit: "))
        
         if menuChoice == 'p':
-            try:
-                playerCount = None
-                while playerCount not in range(1, 5):
-                    playerCount = int(input('How many players 1-4: '))
-
-                numCards = None
-                while numCards not in range(1, 6):
-                    numCards = int(input('How many cards per color 1-5: '))
-
-                board()
-                cards(False, numCards)
-                players(playerCount)
-                
-            except ValueError:
-                print('Error enter a valid integer')
-            
+            theGame()
 
         elif menuChoice == 'i':
             print('This is a game called candy realm! play with 1-4 humans otherwise it will be bots. Draw a card and move to that color. Pretty Simple!')
@@ -133,14 +148,7 @@ def mainMenu():
         else:
             print('ERROR please enter a valid input')
                 
-        
-    
-    
     thing = False   
-
-
-
-
 def main():
 
     printTitleMaterial()
