@@ -53,6 +53,7 @@ def cards(rand, numCards):
     newList = []
     print('CARDS ', end='')
     for card in cardList:
+        
         if card == 'R':
             print(Back.RED + (card + ' ') * numCards, end='')
         elif card == 'G':
@@ -65,13 +66,22 @@ def cards(rand, numCards):
             print(Back.CYAN + (card + ' ') * numCards, end='')
         elif card == 'M':
             print(Back.MAGENTA + (card + ' ') * numCards, end='')
-        elif rand:
+        elif rand == False:
             random.shuffle(cardList)
+            newList.append(cardList)
         else:
             print(Fore.WHITE + (card + ' ') * numCards, end='')
         newList.append(card)
     print(Back.RESET + Fore.RESET)
 
+def shuffleCards(numCards):
+    rand = True
+    
+    cards(rand, numCards)
+    return newList
+
+def drawCards():
+    print('')
 def players():
     
     p1 = '1'
@@ -123,6 +133,12 @@ def theGame():
             
     except ValueError:
         print('Error enter a valid integer')
+
+    try:
+        print('')
+
+    except ValueError:
+        print('')    
             
 
 
