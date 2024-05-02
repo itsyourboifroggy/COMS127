@@ -10,6 +10,8 @@ from colorama import init, Fore, Back
 
 newList = ['R', 'B', 'M', 'Y', 'G', 'C']
 
+sList = []
+
 
 def printTitleMaterial():
     """Prints the title material for the game, including the student's name, class, and section number.
@@ -45,41 +47,55 @@ def board():
             print(Fore.WHITE + i + ' ', end='')
     print(Back.RESET + Fore.RESET)
 
-def cards(numCards, shuffle=False):
+def cards(numCards, shuffle):
     global newList
+
     
     
     init()
     print('CARDS ', end='')
-    for card in newList:
+    for char in newList:
+        for i in range(numCards):
+            sList.append(char)
+            
+    
+
+    if shuffle == True:
+        random.shuffle(sList)
+    
+    
+    
+    
+    
+    for card in sList:
         
         if card == 'R':
-            print(Back.RED + (card + ' ') * numCards, end='')
+            print(Back.RED + (card + ' ') ,end='')
         elif card == 'G':
-            print(Back.GREEN + (card + ' ') * numCards, end='')
+            print(Back.GREEN + (card + ' ') , end='')
         elif card == 'B':
-            print(Back.BLUE + (card + ' ') * numCards, end='')
+            print(Back.BLUE + (card + ' ') , end='')
         elif card == 'Y':
-            print(Back.YELLOW + (card + ' ') * numCards, end='')
+            print(Back.YELLOW + (card + ' ') , end='')
         elif card == 'C':
-            print(Back.CYAN + (card + ' ') * numCards, end='')
+            print(Back.CYAN + (card + ' ') , end='')
         elif card == 'M':
-            print(Back.MAGENTA + (card + ' ') * numCards, end='')
-        elif shuffle == True:
-            random.shuffle(newList)
+            print(Back.MAGENTA + (card + ' ') , end='')
+        
             
         else:
-            print(Fore.WHITE + (card + ' ') * numCards, end='')
+            print(Fore.WHITE + (card + ' '), end='')
+        
         
     print(Back.RESET + Fore.RESET)
-    return newList
+    return sList
 
 def shuffleCards(numCards, playerVar):
     cards(numCards, shuffle=True)
     print(f'Player {playerVar} has shuffled the deck')
 
 def drawCards():
-    topCard = newList[0]
+    topCard = sList[0]
     print(f'The top card of the deck is: {topCard}')
     return topCard 
 def players():
@@ -98,7 +114,7 @@ def playerInput(draw, shuffle, quit, playerVar, numCards):
     try:
         if draw == 'd':
             drawCards()
-            print(f'player {playerVar} has taken {newList[0]}')
+            print(f'player {playerVar} has taken {sList[0]}')
         elif shuffle == 's':
             players()
             board()
@@ -111,8 +127,9 @@ def playerInput(draw, shuffle, quit, playerVar, numCards):
     except ValueError:
         print('ValueError')
 def theGame():
-
-    while True:
+    
+    gameState = True
+    while gameState:
         try:
             playerCount = None
             while playerCount not in range(1, 5):
@@ -126,9 +143,10 @@ def theGame():
             board()
             cards(numCards, shuffle=False)
 
+            gameState = False
         except ValueError:
             print('Error enter a valid integer')
-        break
+        
     
     
     while True:
@@ -137,23 +155,23 @@ def theGame():
 
             while True:
                 if playerVar == 1:
-                    p1Input = str(input(f'Player 1: Would you like to [d]raw an {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                    p1Input = str(input(f'Player 1: Would you like to [d]raw an {sList[0]} card, [s]huffle the deck, or [q]uit?: '))
                     
                     
                     playerInput(p1Input, p1Input, p1Input, playerVar, numCards)
                     playerVar += 1
                 elif playerVar == 2:
-                    p2Input = str(input(f'Player 2: Would you like to [d]raw an {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                    p2Input = str(input(f'Player 2: Would you like to [d]raw an {sList[0]} card, [s]huffle the deck, or [q]uit?: '))
                     
                     playerInput(p2Input, p2Input, p2Input, playerVar, numCards)
                     playerVar += 1
                 elif playerVar == 3:
-                    p3Input = str(input(f'Player 3: Would you like to [d]raw an {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                    p3Input = str(input(f'Player 3: Would you like to [d]raw an {sList[0]} card, [s]huffle the deck, or [q]uit?: '))
                 
                     playerInput(p3Input, p3Input, p3Input, playerVar,numCards)
                     playerVar += 1
                 elif playerVar == 4:
-                    p4Input = str(input(f'Player 4: Would you like to [d]raw an {newList[0]} card, [s]huffle the deck, or [q]uit?: '))
+                    p4Input = str(input(f'Player 4: Would you like to [d]raw an {sList[0]} card, [s]huffle the deck, or [q]uit?: '))
                     
                     playerInput(p4Input, p4Input, p4Input, playerVar,numCards) 
                     playerVar = 1
